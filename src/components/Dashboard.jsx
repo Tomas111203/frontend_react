@@ -22,8 +22,6 @@ export default function Dashboard() {
     );
 
     if (token) {
-      console.log('%c🔑 Raw Access Token (Bearer JWT):', 'color: #10b981; font-weight: bold; font-size: 12px;');
-      console.log(token);
 
       try {
         const decoded = jwtDecode(token);
