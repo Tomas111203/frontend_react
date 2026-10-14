@@ -7,7 +7,10 @@ COPY . .
 RUN npm run build
 
 FROM nginx:alpine
-RUN apk add --no-cache fail2ban iptables
+RUN apk add --no-cache fail2ban iptables ca-certificates
+
+# Instalar Nuclei desde la imagen oficial
+COPY --from=projectdiscovery/nuclei:latest /usr/local/bin/nuclei /usr/local/bin/nuclei
 
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
